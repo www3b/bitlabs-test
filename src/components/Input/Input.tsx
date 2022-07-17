@@ -6,7 +6,7 @@ import styles from './Input.module.scss';
 
 type DefaultInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
-type Props = DefaultInputProps & {
+export type Props = DefaultInputProps & {
   value: string;
   label?: string;
   onChange: (value: string) => void;

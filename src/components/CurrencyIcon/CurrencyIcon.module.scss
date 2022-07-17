@@ -1,0 +1,29 @@
+.icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 16px;
+
+  &::before {
+    font-size: 0.6em;
+    position: absolute;
+    right: 24px;
+    top: 3px;
+    width: max-content;
+    text-align: right;
+  }
+}
+
+.usd {
+  background: url('./public/usd.png') no-repeat center/cover;
+  &::before {
+    content: 'USD'
+  }
+}
+
+.eth {
+  background: url('./public/eth.png') no-repeat center/cover;
+  &::before {
+    content: 'USD EVMOS'
+  }
+}
