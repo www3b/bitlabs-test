@@ -2,17 +2,21 @@ import React from 'react';
 
 import styles from './Input.module.scss';
 
-type Props = {
+type DefaultInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+
+type Props = DefaultInputProps & {
   value: string;
   label?: string;
   onChange: (value: string) => void;
+  normalize?: (value: string) => string;
 };
 
 const Input = (props: Props) => {
-  const { value, onChange, label = '' } = props;
+  const { value, onChange, normalize, label = '', ...inputProps } = props;
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
-    onChange(event.currentTarget.value);
+    const newValue = normalize ? normalize(event.currentTarget.value) : event.currentTarget.value;
+    onChange(newValue);
   };
 
   const inputClass = React.useMemo(() =>
@@ -22,7 +26,12 @@ const Input = (props: Props) => {
 
   return (
     <div className={styles.field}>
-      <input className={inputClass} type='text' value={value} onChange={handleChange} />
+      <input
+        {...inputProps}
+        className={inputClass}
+        value={value}
+        onChange={handleChange}
+      />
       <label className={styles.label}>{label}</label>
     </div>
   );

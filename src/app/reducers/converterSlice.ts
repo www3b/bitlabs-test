@@ -21,9 +21,12 @@ const converterSlice = createSlice({
     setTargetAmount: (state, action: PayloadAction<number>) => {
       state.input = { field: 'target_amount', value: action.payload };
     },
+    setQuoteData: (state, action: PayloadAction<QuoteData>) => {
+      state.data = action.payload
+    }
   }
 });
 
-export const { setSourceAmount, setTargetAmount } = converterSlice.actions;
+export const { setSourceAmount, setTargetAmount, setQuoteData } = converterSlice.actions;
 
 export default converterSlice.reducer;

@@ -9,7 +9,7 @@ export const store = configureStore({
   reducer: {
     converter: converterSlice,
   },
-  middleware: [sagaMiddleware],
+  middleware: (gDM) =>  gDM().concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(sagas);

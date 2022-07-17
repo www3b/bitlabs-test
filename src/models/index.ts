@@ -32,6 +32,6 @@ export type QuoteData = {
   target_amount: number;
   fiat_blockchain_fee: number;
   absolute_internal_fee: number;
-  full_fee: number;
+  total_fee: number;
   internal_fee_percent: number;
 };

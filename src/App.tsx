@@ -3,13 +3,17 @@ import { Provider } from 'react-redux';
 
 import { store } from './app/store';
 
-import './App.scss';
+import './styles/global.scss';
+import { Converter } from './features/Converter';
 
 
 function App() {
+
   return (
     <Provider store={store}>
-      <div className="App" />
+      <div className="App">
+        <Converter />
+      </div>
     </Provider>
   );
 }

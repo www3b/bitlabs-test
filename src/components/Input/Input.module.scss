@@ -1,14 +1,14 @@
 @import '../../styles/colors.scss';
 
 .field {
+  width: 100%;
+  display: inline-flex;
   position: relative;
 }
 
 .label {
   color: $grey-light;
-  color: $white;
   position: absolute;
-  width: 100%;
   left: 12px;
   top: 33.33333%;
   transition: top 150ms ease-in-out, font-size 200ms;
@@ -19,6 +19,7 @@
   border-radius: 6px;
   height: 23px;
   min-width: 200px;
+  width: 100%;
   padding: 22px 12px 12px;
   background-color: $grey;
   border: 1px solid $green;

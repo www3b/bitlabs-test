@@ -2,19 +2,23 @@
 
 .wrapper {
   color: $white;
+  width: fit-content;
+  margin-left: auto;
 }
 
 .title {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .window {
+  min-width: 250px;
+  font-size: 0.8em;
   border-radius: 6px;
   display: flex;
   align-items: flex-end;
-  height: 70px;
-  width: 325px;
-  padding-bottom: 16px;
+  height: 46px;
+  width: fit-content;
+  padding-bottom: 8px;
   box-sizing: border-box;
   background-color: $grey;
   margin-top: 10px;
@@ -22,7 +26,7 @@
 
 .value {
   position: relative;
-  padding: 0 36px;
+  padding: 0 16px;
   display: inline-block;
 
   &::after {
@@ -31,9 +35,9 @@
 
   &::before {
     color: $grey-light;
-    font-size: 9px;
+    font-size: 60%;
     position: absolute;
-    top: -20px;
+    top: -14px;
   }
 
   &.network::before {
