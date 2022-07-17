@@ -1,0 +1,23 @@
+@use './fonts.scss';
+
+input, button {
+  outline: none;
+}
+
+label {
+  pointer-events: none;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+
+// fonts
+
