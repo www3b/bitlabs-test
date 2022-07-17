@@ -1,5 +1,6 @@
 import React from 'react';
 
+import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setSourceAmount, setTargetAmount } from '../../app/reducers/converterSlice';
 import { positiveNumberNormalizer } from '../../utils/normalize';
@@ -53,26 +54,27 @@ const Converter = () => {
   return (
     <div className={styles.window}>
       <h3>Select Your Amount</h3>
-      <div className={styles.withMargin}>
-        <Input
-          normalize={positiveNumberNormalizer}
-          value={sourceValue}
-          onChange={handleSourceChange}
-          label='You pay'
-        />
-      </div>
-      <div className={styles.withMargin}>
-        <Input
-          normalize={positiveNumberNormalizer}
-          value={targetValue}
-          onChange={handleTargetChange}
-          label='You Receive'
-        />
-      </div>
-      <div className={styles.withMargin}>
-        <FeeInfo networkFee={fiat_blockchain_fee} c14Fee={absolute_internal_fee} totalFee={total_fee} />
-      </div>
-      <div className={`${styles.withMargin} ${styles.centered}`}>
+      <Input
+        className={styles.withMargin}
+        normalize={positiveNumberNormalizer}
+        value={sourceValue}
+        onChange={handleSourceChange}
+        label='You pay'
+      />
+      <Input
+        className={styles.withMargin}
+        normalize={positiveNumberNormalizer}
+        value={targetValue}
+        onChange={handleTargetChange}
+        label='You Receive'
+      />
+      <FeeInfo
+        networkFee={fiat_blockchain_fee}
+        c14Fee={absolute_internal_fee}
+        totalFee={total_fee}
+      />
+
+      <div className={cn(styles.button, styles.centered)}>
         <Button onClick={() => void 0}>BUY NOW</Button>
       </div>
     </div>
