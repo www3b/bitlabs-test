@@ -1,0 +1,10 @@
+@import '../../styles/colors.scss';
+
+.button {
+  min-width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  color: $black;
+  background-color: $green;
+  font-weight: 600;
+}
