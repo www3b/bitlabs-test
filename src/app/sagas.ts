@@ -1,23 +1,16 @@
 import { all, call, takeLatest, select, apply, put } from 'redux-saga/effects';
 
 import { RootState } from './store';
-import api from '../utils/api';
-import { InputData, QuoteData, Currency } from './../models/index';
+import { InputData, QuoteData } from './../models/index';
 import { setSourceAmount, setTargetAmount, setQuoteData } from './reducers/converterSlice';
+import { quoteDataRequest } from '../utils/requests';
 
 function* fetchQuoteData() {
   const { field, value }: InputData = yield select((state: RootState) => state.converter.input)
   if (!field || !value) {
     return;
   }
-  const response: QuoteData = yield apply(api, api.post, [
-    '/quotes',
-    {
-      [field]: value.toString(),
-      source_currency: Currency.USD,
-      target_crypto_asset_id: "b2384bf2-b14d-4916-aa97-85633ef05742",
-    }
-  ]);
+  const response: QuoteData = yield call(quoteDataRequest, field, value);
   yield put(setQuoteData(response));
 };
 
