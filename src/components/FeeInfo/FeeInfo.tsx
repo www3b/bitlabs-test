@@ -20,9 +20,9 @@ const FeeInfo = (props: Props) => {
       <div className={styles.window}>
         {hasValues && (
           <>
-            <span className={`${styles.value} ${styles.network}`}>{networkFee}</span>+
-            <span className={`${styles.value} ${styles.c14}`}>{c14Fee}</span> =
-            <span className={`${styles.value} ${styles.total}`}>{totalFee}</span>
+            <span className={cn(styles.value, styles.network)}>{networkFee}</span>+
+            <span className={cn(styles.value, styles.c14)}>{c14Fee}</span> =
+            <span className={cn(styles.value, styles.total)}>{totalFee}</span>
           </>
         )}
 

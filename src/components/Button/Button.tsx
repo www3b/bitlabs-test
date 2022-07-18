@@ -9,7 +9,7 @@ type Props = {
 const Button = (props: React.PropsWithChildren<Props>) => {
   const { onClick } = props;
   return (
-    <button className={styles.button} onClick={onClick}>{props.children}</button>
+    <button className={styles.button} onClick={onClick} data-testid='button'>{props.children}</button>
   );
 };
 

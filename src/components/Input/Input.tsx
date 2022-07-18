@@ -36,6 +36,7 @@ const Input = (props: Props) => {
         className={inputClass}
         value={value}
         onChange={handleChange}
+        data-testid='input'
       />
       <label className={styles.label}>{label}</label>
     </div>

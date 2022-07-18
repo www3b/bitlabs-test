@@ -17,7 +17,7 @@ const currencyClassMap = {
 const CurrencyIcon = (props: Props) => {
   const currencyClass = currencyClassMap[props.currency];
   return (
-    <div className={cn(styles.icon, currencyClass)} />
+    <div className={cn(styles.icon, currencyClass)} data-testid='currency-icon' />
   );
 };
 
