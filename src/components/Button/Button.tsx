@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Button = (props: React.PropsWithChildren<Props>) => {
@@ -13,4 +13,4 @@ const Button = (props: React.PropsWithChildren<Props>) => {
   );
 };
 
-export default Button;
+export default React.memo(Button);

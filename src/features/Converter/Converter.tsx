@@ -5,13 +5,13 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setSourceAmount, setTargetAmount } from '../../app/reducers/converterSlice';
 import { positiveNumberNormalizer } from '../../utils/normalize';
 import { throttle } from '../../utils/throttle';
+import { Currency } from '../../models';
 
 import { Button } from '../../components/Button';
+import { CurrencyInput } from '../../components/CurrencyInput';
 import { FeeInfo } from '../../components/FeeInfo';
 
 import styles from './Converter.module.scss';
-import { CurrencyInput } from '../../components/CurrencyInput';
-import { Currency } from '../../models';
 
 const Converter = () => {
   const [sourceValue, setSourceValue] = React.useState('');
@@ -36,15 +36,15 @@ const Converter = () => {
     dispatch(setTargetAmount(Number(value)));
   }, 500));
 
-  const handleSourceChange = (value: string) => {
+  const handleSourceChange = React.useCallback((value: string) => {
     setSourceValue(value);
     setSourceValueWithDelay.current(value);
-  };
+  }, []);
 
-  const handleTargetChange = (value: string) => {
+  const handleTargetChange = React.useCallback((value: string) => {
     setTargetValue(value);
     setTargetValueWithDelay.current(value);
-  }
+  }, [])
 
   // Set values returned form API to fields
   React.useEffect(() => {
@@ -79,7 +79,7 @@ const Converter = () => {
         totalFee={total_fee}
       />
       <div className={cn(styles.button, styles.centered)}>
-        <Button onClick={() => void 0}>BUY NOW</Button>
+        <Button>BUY NOW</Button>
       </div>
     </div>
   );

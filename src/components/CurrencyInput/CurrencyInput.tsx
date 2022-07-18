@@ -20,4 +20,4 @@ const CurrencyInput = (props: Props) => {
   )
 }
 
-export default CurrencyInput
+export default React.memo(CurrencyInput)

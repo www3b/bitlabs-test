@@ -21,4 +21,4 @@ const CurrencyIcon = (props: Props) => {
   );
 };
 
-export default CurrencyIcon
+export default React.memo(CurrencyIcon);
