@@ -20,10 +20,17 @@ class Api implements IApi {
       },
       body: JSON.stringify(data),
     });
+
+    const status = response.status;
+
     const json = await response.json();
 
-    // Remove [[Prototype]] from JSON
-    return Object.assign(Object.create(null), json);
+    if (status >= 200 && status < 300) {
+      // Remove [[Prototype]] from JSON
+      return Object.assign(Object.create(null), json);
+    } else {
+      return Promise.reject(json);
+    }
   };
 }
 

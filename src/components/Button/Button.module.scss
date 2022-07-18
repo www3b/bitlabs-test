@@ -8,4 +8,8 @@
   color: $black;
   background-color: $green;
   font-weight: 600;
+
+  &:disabled {
+    background-color: $grey-light;
+  }
 }

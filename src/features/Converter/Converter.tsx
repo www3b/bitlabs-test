@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setSourceAmount, setTargetAmount } from '../../app/reducers/converterSlice';
 import { positiveNumberNormalizer } from '../../utils/normalize';
 import { throttle } from '../../utils/throttle';
-import { Currency } from '../../models';
+import { Currency, LoadingStatus } from '../../models';
 
 import { Button } from '../../components/Button';
 import { CurrencyInput } from '../../components/CurrencyInput';
@@ -16,6 +16,12 @@ import styles from './Converter.module.scss';
 const Converter = () => {
   const [sourceValue, setSourceValue] = React.useState('');
   const [targetValue, setTargetValue] = React.useState('');
+
+  const loadingStatus = useAppSelector((state) => state.converter.loadingStatus);
+  const isLoading = loadingStatus === LoadingStatus.Loading;
+  const isFailed = loadingStatus === LoadingStatus.Fail;
+
+  const errorMessage = useAppSelector((state) => state.converter.errorMessage);
 
   const converterData = useAppSelector((state) => state.converter.data);
   const {
@@ -79,8 +85,11 @@ const Converter = () => {
         totalFee={total_fee}
       />
       <div className={cn(styles.button, styles.centered)}>
-        <Button>BUY NOW</Button>
+        <Button disabled={isLoading}>{isLoading ? 'LOADING...' : 'BUY NOW'}</Button>
       </div>
+      {isFailed && (
+        <div className={styles.error}>{errorMessage}</div>
+      )}
     </div>
   );
 };

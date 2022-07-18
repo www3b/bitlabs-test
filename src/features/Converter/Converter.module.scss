@@ -27,3 +27,9 @@
   display: flex;
   justify-content: center;
 }
+
+.error {
+  font-size: 0.8em;
+  margin-top: 20px;
+  color: $redError;
+}

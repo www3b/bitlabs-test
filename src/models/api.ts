@@ -1,5 +1,12 @@
 import { Currency } from ".";
 
+export enum LoadingStatus {
+  Idle,
+  Loading,
+  Success,
+  Fail,
+};
+
 export type CreateQuoteResponse = {
   id: string;
   source_currency: Currency;
@@ -18,4 +25,9 @@ export type CreateQuotePayload = {
   target_crypto_asset_id: string;
   source_amount?: number;
   target_amount?: number;
+};
+
+export type ApiError = {
+  error_code: string;
+  message: string;
 };

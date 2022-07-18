@@ -1,17 +1,30 @@
-import { all, call, takeLatest, select, apply, put } from 'redux-saga/effects';
+import { all, call, takeLatest, select, put } from 'redux-saga/effects';
 
 import { RootState } from './store';
-import { InputData, QuoteData } from './../models/index';
-import { setSourceAmount, setTargetAmount, setQuoteData } from './reducers/converterSlice';
+import { ApiError, InputData, QuoteData } from './../models/index';
+import {
+  setSourceAmount,
+  setTargetAmount,
+  setQuoteData,
+  initRequest,
+  successRequest,
+  failRequest
+} from './reducers/converterSlice';
 import { quoteDataRequest } from '../utils/requests';
 
 function* fetchQuoteData() {
+  yield put(initRequest());
   const { field, value }: InputData = yield select((state: RootState) => state.converter.input)
   if (!field || !value) {
     return;
   }
-  const response: QuoteData = yield call(quoteDataRequest, field, value);
-  yield put(setQuoteData(response));
+  try {
+    const response: QuoteData = yield call(quoteDataRequest, field, value);
+    yield put(successRequest());
+    yield put(setQuoteData(response));
+  } catch(e) {
+    yield put(failRequest((e as ApiError).message));
+  }
 };
 
 function* watchSourceChange() {

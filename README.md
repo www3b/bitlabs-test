@@ -20,6 +20,4 @@ In the app was used standard react/redux stack but the default thunk middleware 
 
 ## Areas for improvement
 
-I could add aliases for common used folders to make imports more pretty.
-
-Regarding functionality it could be added user-frendly error handling and responsiveness (show loader when API request is pending)
+I could add aliases for common used folders to make imports more pretty. It also makes sense to setup linter/prettier.
