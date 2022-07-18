@@ -2,20 +2,20 @@ export interface ThrottleOptions {
   /**
    * Fire immediately on the first call.
    */
-  start?: boolean
+  start?: boolean;
   /**
    * Fire as soon as `wait` has passed.
    */
-  middle?: boolean
+  middle?: boolean;
   /**
    * Cancel after the first successful call.
    */
-  once?: boolean
+  once?: boolean;
 }
 
 interface Throttler<T extends unknown[]> {
-  (...args: T): void
-  cancel(): void
+  (...args: T): void;
+  cancel(): void;
 }
 
 export function throttle<T extends unknown[]>(
@@ -23,35 +23,35 @@ export function throttle<T extends unknown[]>(
   wait = 0,
   { start = false, middle = false, once = false }: ThrottleOptions = {}
 ): Throttler<T> {
-  let last = 0
-  let timer: ReturnType<typeof setTimeout>
+  let last = 0;
+  let timer: number;
   let cancelled = false
   function fn(this: unknown, ...args: T) {
     if (cancelled) {
       return;
     }
-    const delta = Date.now() - last
-    last = Date.now()
+    const delta = Date.now() - last;
+    last = Date.now();
     if (start) {
-      start = false
+      start = false;
       callback.apply(this, args);
       if (once) {
         fn.cancel();
       }
     } else if ((middle && delta < wait) || !middle) {
-      clearTimeout(timer)
-      timer = setTimeout(
+      clearTimeout(timer);
+      timer = window.setTimeout(
         () => {
-          last = Date.now()
-          callback.apply(this, args)
+          last = Date.now();
+          callback.apply(this, args);
           if (once) {
             fn.cancel();
           }
         },
         !middle ? wait : wait - delta
-      )
-    }
-  }
+      );
+    };
+  };
 
   fn.cancel = () => {
     clearTimeout(timer)

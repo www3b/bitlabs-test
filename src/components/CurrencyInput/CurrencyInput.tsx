@@ -17,7 +17,7 @@ const CurrencyInput = (props: Props) => {
       <Input {...inputProps} />
       <CurrencyIcon currency={currency} />
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(CurrencyInput)
+export default React.memo(CurrencyInput);
